@@ -1,5 +1,7 @@
+package day1;
+
 /***
- * LeetCode461  汉明距离 即两个数 汉明距离是以理查德·卫斯里·汉明的名字命名的。在信息论中，两个等长字符串之间的汉明距离是两个字符串对应位置的不同字符的个数。
+ * day1.LeetCode461  汉明距离 即两个数 汉明距离是以理查德·卫斯里·汉明的名字命名的。在信息论中，两个等长字符串之间的汉明距离是两个字符串对应位置的不同字符的个数。
  * 换句话说，它就是将一个字符串变换成另外一个字符串所需要替换的字符个数。
  *
  * The Hamming distance between two integers is the number of positions at which the corresponding bits are different.

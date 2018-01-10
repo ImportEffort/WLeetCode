@@ -1,3 +1,5 @@
+package day2;
+
 import com.sun.xml.internal.fastinfoset.util.CharArray;
 
 import java.util.ArrayList;
