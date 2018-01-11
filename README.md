@@ -6,7 +6,7 @@
 
  > 刷题：  day1.leetCode760 day1.LeetCode461 day1.LeetCode657
  
- 需要回头巩固的知识点：
+需要回头巩固的知识点：
  
  1. java Map 的时间复杂度
  2. http://blog.csdn.net/21aspnet/article/details/7387373
