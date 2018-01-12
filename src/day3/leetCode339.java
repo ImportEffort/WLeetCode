@@ -3,6 +3,7 @@ package day3;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 
 /***
  * Given a nested list of integers, return the sum of all integers in the list weighted by their depth.
