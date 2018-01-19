@@ -1,5 +1,8 @@
 package day7;
 
+import TestUItls.DoubleNode;
+import TestUItls.Node;
+
 /**
  * 翻转单向链表和双向链表
  */

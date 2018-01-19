@@ -1,5 +1,8 @@
 package day7;
 
+import TestUItls.DoubleNode;
+import TestUItls.Node;
+
 /**
  * 删除单链表和双链表中的倒数第 K 个元素
  * <p>

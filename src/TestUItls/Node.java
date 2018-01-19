@@ -1,6 +1,4 @@
-package day7;
-
-import javax.swing.plaf.TextUI;
+package TestUItls;
 
 public class Node {
     public int value;
@@ -14,7 +12,7 @@ public class Node {
     public String toString() {
         return "Node{" +
                 "value=" + value +
-                ", next=" + (next == null ? "null" : next.toString()) +
-                '}';
+                ", next=" + (next == null ? "null" : next.toString() +
+                '}');
     }
 }

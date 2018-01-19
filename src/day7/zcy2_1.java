@@ -1,5 +1,7 @@
 package day7;
 
+import TestUItls.Node;
+
 /**
  * 打印两个有序链表的公共部分
  *
