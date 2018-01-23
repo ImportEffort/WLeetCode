@@ -29,8 +29,24 @@ public class TestUtils {
         return head;
     }
 
-    /**
-     * 打印环形链表
-     */
+    public static Node getPalindromeList() {
+        Node head = new Node(1);
+        head.next = new Node(2);
+        head.next.next = new Node(3);
+        head.next.next.next = new Node(2);
+        head.next.next.next.next = new Node(1);
+        return head;
+    }
+
+    public static void printList(Node head) {
+        Node cur = head;
+        System.out.print("[");
+        while (cur != null) {
+            System.out.print(" " + cur.value + " ");
+            cur = cur.next;
+        }
+        System.out.println("]");
+    }
+
 
 }
