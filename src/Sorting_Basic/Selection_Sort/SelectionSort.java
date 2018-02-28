@@ -16,6 +16,7 @@ public class SelectionSort {
             }
             swap(arr, i, minIndex);
         }
+
     }
 
     /**
