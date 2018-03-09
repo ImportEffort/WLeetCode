@@ -90,7 +90,7 @@ public class QuickSort {
 
         for (int i = l + 1; i <= r; i++) {
             if (arr[i] < v) {
-                swap(arr, j + 1, i);//没想明白
+                swap(arr, j + 1, i);
                 j++;
             }
         }

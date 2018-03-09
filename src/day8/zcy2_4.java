@@ -10,7 +10,7 @@ public class zcy2_4 {
 
     public static void main(String[] args) {
         System.out.println(TestUtils.getList(6));
-        System.out.println("翻转结果：； " + reversePart(TestUtils.getList(6), 1, 2));
+        System.out.println("翻转结果：； " + reversePart(TestUtils.getList(6), 2, 4));
 
         System.out.println("翻转结果：； " + reversePart(TestUtils.getList(6), 1, 3));
 

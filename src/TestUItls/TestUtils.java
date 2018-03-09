@@ -39,13 +39,14 @@ public class TestUtils {
     }
 
     public static void printList(Node head) {
-        Node cur = head;
-        System.out.print("[");
-        while (cur != null) {
-            System.out.print(" " + cur.value + " ");
-            cur = cur.next;
-        }
-        System.out.println("]");
+        StringBuilder s = new StringBuilder();
+
+        for (Node temNode = head; temNode != null; temNode = temNode.next)
+            s.append(temNode.value).append(" -> ");
+
+        String st = s.substring(0, s.length() - 4);
+
+        System.out.println("原链表为:" + st);
     }
 
 

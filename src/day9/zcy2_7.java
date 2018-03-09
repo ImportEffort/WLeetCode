@@ -17,11 +17,20 @@ public class zcy2_7 {
         System.out.print("旧链表：");
         TestUtils.printList(head);
 
-        System.out.print("新链表：");
-        TestUtils.printList(listPartition1(head, 5));
+
+        Node cur = head;
+        while (cur.next != null) {
+            cur = cur.next;
+        }
+        quickSort(head, cur);
 
         System.out.print("新链表：");
-        TestUtils.printList(listPartition2(generaList(), 5));
+
+        TestUtils.printList(head);
+//        TestUtils.printList(partition(head, 5));
+
+//        System.out.print("新链表：");
+//        TestUtils.printList(listPartition2(generaList(), 5));
 
     }
 
@@ -48,7 +57,7 @@ public class zcy2_7 {
             len++;
             cur = cur.next;
         }
-        arrPartition(nodes, partition);
+        partition(nodes, partition);
         int i = 0;
         for (i = 1; i != len; i++) {
             nodes[i - 1].next = nodes[i];
@@ -59,13 +68,83 @@ public class zcy2_7 {
         return nodes[0];
     }
 
+
+    /**
+     * arr[l + 1 ... j] < v
+     * arr[j+1,i) >= v
+     *
+     * @param left
+     * @param right
+     */
+    private static void quickSort(Node left, Node right) {
+        if (left == null || right == null || left == right) {
+            return;
+        }
+        //快拍的标志值
+        int v = left.value;
+        //j = l
+        Node l = left;
+        Node start = left.next;
+        // for (int i = l + 1; i <= r; i++) {
+        while (start != right.next && start != null) {
+            if (start.value < v) {
+                l = l.next;
+                //swap(arr,j+1,i)
+                int temp = l.value;
+                l.value = start.value;
+                start.value = temp;
+            }
+            start = start.next;
+        }
+
+        //交换 l 与 与 left 的值
+        int temp = l.value;
+        l.value = left.value;
+        left.value = temp;
+
+        quickSort(left, l);
+        quickSort(l.next, right);
+    }
+
+
+    private static Node partition(Node head, int x) {
+        Node left = new Node(0);
+        Node right = new Node(0);
+        Node mid = new Node(0);
+
+        Node leftDummy = left;
+        Node rightDummy = right;
+        Node midDummy = mid;
+
+        while (head != null) {
+            if (head.value < x) {
+                left.next = head;
+                left = left.next;
+            } else if (head.value == x) {
+                mid.next = head;
+                mid = mid.next;
+            } else {
+                right.next = head;
+                right = right.next;
+            }
+            head = head.next;
+        }
+
+        left.next = midDummy.next;
+        mid.next = rightDummy.next;
+        right.next = null;
+
+        return leftDummy.next;
+    }
+
+
     /**
      * 数组 一次快速排序的实现
      *
      * @param nodes
      * @param partition
      */
-    private static void arrPartition(Node[] nodes, int partition) {
+    private static void partition(Node[] nodes, int partition) {
         int samll = -1;
         int big = nodes.length;
         int index = 0;
@@ -90,7 +169,7 @@ public class zcy2_7 {
     private static Node generaList() {
         Node head = new Node(7);
         head.next = new Node(9);
-        head.next.next = new Node( 1);
+        head.next.next = new Node(1);
         head.next.next.next = new Node(8);
         head.next.next.next.next = new Node(5);
         head.next.next.next.next.next = new Node(2);

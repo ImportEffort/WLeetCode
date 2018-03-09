@@ -13,8 +13,8 @@ public class MergerSort {
         mergeSortBU(num, num.length);
         System.out.println(Arrays.toString(num));
 
-        int[] arr = {8, 3, 1, 6, 7, 4, 2};
-        BubbleSort(arr, 8);
+        int[] arr = {8, 3, 1, 6, 7, 4, 2, 19};
+        BubbleSort(arr, arr.length);
         System.out.println(Arrays.toString(arr));
     }
 
@@ -23,8 +23,9 @@ public class MergerSort {
      * @param n   数组长度
      */
     private static void BubbleSort(int[] arr, int n) {
+        //n = 1 的时候不需要排序
         for (int i = 0; i < n - 1; i++) {
-            for (int j = 1; j < n - i - 1; j++) {
+            for (int j = 1; j < n - i; j++) {
                 if (arr[j - 1] > arr[j]) {
                     //交换两个元素
                     int temp = arr[j];
@@ -39,6 +40,12 @@ public class MergerSort {
         __mergeSort(num, 0, n - 1);
     }
 
+    /***
+     *
+     * @param arr 待排序数组
+     * @param l  其实元素角标 0
+     * @param r 最后一个元素角标 n -1
+     */
     private static void __mergeSort(Integer[] arr, int l, int r) {
         if (l >= r) {
             return;
