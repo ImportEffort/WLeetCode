@@ -2,19 +2,22 @@ package ArrayAMartix;
 
 public class MatrixPrint {
     public static void main(String[] args) {
+        System.out.println();
+        System.out.println("------- 旋转打印矩阵 ------");
+
         MatrixPrint matrixPrint = new MatrixPrint();
         int[][] matrix = matrixPrint.buildMatrix();
         matrixPrint.spiralOrderPrint(matrix);
 
         System.out.println();
-        System.out.println("-------------");
+        System.out.println("------- 之字型打印矩阵 ------");
 
 
         int[][] matrix2 = matrixPrint.buildMatrix2();
         matrixPrint.printMatrixZigZag(matrix2);
 
         System.out.println();
-        System.out.println("-------------");
+        System.out.println("------将矩阵旋转 90° -------");
 
         int[][] matrix3 = matrixPrint.buildMatrix3();
         matrixPrint.rotateMatrix(matrix3);
@@ -22,6 +25,13 @@ public class MatrixPrint {
 
     }
 
+    /***
+     * 旋转的打印矩阵 一个矩阵的一圈可以用左上角的角标 (tR,tC) 右下角的角标 (dR,dC)来表示
+     * 旋转矩阵的打印临界值判断 就是每次打印完一圈以后左上角标就+1 和右下角标-1，知道右下角标的位置出现在左上角标的左上方，则打印结束
+     * 打印的过程 就是打印最上边一行（tR 不变 ，tC++），打印最右边一列（tR++，tC = dC 不变），
+     * 打印最下边一行（tR= dR 不变，tC--），打印最左边一列（tR--，tC =初始值不变），
+     * @param matrix
+     */
     private void spiralOrderPrint(int[][] matrix) {
         int tR = 0;
         int tC = 0;
