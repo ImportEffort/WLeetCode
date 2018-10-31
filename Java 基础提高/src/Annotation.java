@@ -8,29 +8,89 @@ public class Annotation {
     @Retention(RetentionPolicy.RUNTIME)
     public @interface TestAnnotation {
 
-//        enum Color {BULE, RED, GREEN}
-
         String value() default "";
 
         String[] values();
+
 
         int id() default -1;
 
         int[] ids();
 
-//        Color testEnum() default Color.BULE;
+        // 错误的不能使用包装类 以及自定义类型
+        // Integer idInt();
+        // Apple apple();
 
-//        Color[] testEnums();
+        enum Color {BULE, RED, GREEN}
+
+
+        Color testEnum() default Color.BULE;
+
+        Color[] testEnums();
 
         Class className();
 
-
+        FruitName fruitName() default @FruitName("apple");
     }
+
+
+    /**
+     * 定义一个注解表示英雄的名字
+     */
+    @Target(ElementType.FIELD)
+    @Retention(RetentionPolicy.RUNTIME)
+    private @interface HeroName {
+        String value();
+
+        String alias();
+    }
+
+    /**
+     * 定义一个类包含英雄名称的属性
+     */
+    public static class Hero {
+
+        @HeroName(value = "Spirit Walker", alias = "SB")
+        private String heroName;
+
+        public void setHeroName(String heroName) {
+            this.heroName = heroName;
+        }
+
+        public String getHeroName() {
+            return heroName;
+        }
+
+        @Override
+        public String toString() {
+            return "Hero{" +
+                    "heroName='" + heroName + '\'' +
+                    '}';
+        }
+    }
+
+    public static void getHeroNameInfo(Hero hero) {
+        try {
+            Class<? extends Hero> clazz = hero.getClass();
+            Field field = clazz.getDeclaredField("heroName");
+            // Field isAnnotationPresent 判断一个属性是否被对应的注解修饰
+            if (field.isAnnotationPresent(HeroName.class)) {
+                //field.getAnnotation 获取属性的注解
+                HeroName fruitNameAnno = field.getAnnotation(HeroName.class);
+                hero.setHeroName("name = " +fruitNameAnno.value() +" alias = " + fruitNameAnno.alias());
+            }
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @Target(ElementType.FIELD)
     @Retention(RetentionPolicy.RUNTIME)
-    protected @interface FruitName {
+    private @interface FruitName {
         String value();//static final  不可以用
+
+        String alias() default "no alias";
     }
 
     @Target(ElementType.FIELD)
@@ -147,7 +207,6 @@ public class Annotation {
         public static void getFruitReflection(Class<?> clazz) {
 
 
-
 //            Type[] genericInterfaces = clazz.getGenericInterfaces();
 //            Type genericSuperclass = clazz.getGenericSuperclass();
 //
@@ -181,7 +240,9 @@ public class Annotation {
 
     public static void main(String[] args) {
 //        FruitInfoProccessor.getFruitInfo(Apple.class);
-        getFruitInfo(Apple.class);
-
+//        getFruitInfo(Apple.class);
+        Hero hero = new Hero();
+        getHeroNameInfo(hero);
+        System.out.println("hero = " + hero);
     }
 }
